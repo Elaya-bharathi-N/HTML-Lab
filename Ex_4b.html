@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Web Features</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s;
+    }
+
+    .clock {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+      margin-top: 50px;
+    }
+
+    .image-text {
+      display: none;
+      font-size: 1.2em;
+      color: #333;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .change-bg-btn {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .hover-text {
+      font-size: 1.5em;
+      color: #333;
+      margin-top: 30px;
+      transition: color 0.3s;
+    }
+
+    .image-container:hover #image-text {
+      display: block;
+    }
+
+    #hover-text:hover {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="clock" class="clock"></div>
+
+  <div id="image-container" class="image-container">
+    <img src="jersey_1.jfif" alt="Placeholder Image" id="image">
+    <p id="image-text" class="image-text">You are hovering over the image!</p>
+  </div><br>
+
+  <button id="change-bg-btn" class="change-bg-btn">Click to Change Background Color</button>
+
+  <div id="hover-text" class="hover-text">Hover over me!</div>
+
+  <script>
+    function updateTime() {
+      const clockElement = document.getElementById('clock');
+      const currentTime = new Date();
+      clockElement.textContent = currentTime.toLocaleTimeString();
+    }
+
+    setInterval(updateTime, 1000);
+
+    document.getElementById('change-bg-btn').addEventListener('click', function () {
+      document.body.style.backgroundColor = getRandomColor();
+    });
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+
+</body>
+</html>
